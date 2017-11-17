@@ -26,8 +26,10 @@
 </p>
 <p>
   <strong>Reviews:</strong>
-  <%= @entry.reviews %>
+  <% @entry.reviews.each do |entry| %>
+    <li>score: <%= entry.score %></li>
+  <% end %>
 </p>
-<%= link_to 'Review', new_review_path(@entry) %> |
+<%= link_to 'Review', new_entry_review_path(@entry) %> |
 <%= link_to 'Edit', edit_entry_path(@entry) %> |
 <%= link_to 'Back', entries_path %>
