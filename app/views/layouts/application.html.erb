@@ -9,11 +9,13 @@
   </head>
 
   <body>
-    <header>
-      <h1>Hello</h1>
-      <p>yes this is dog</p>
-    </header>
-    <p class="notice"><%= notice %></p>
+    <nav>
+      <ul>
+        <li class="nav__home"><%= link_to 'Home', entries_path %></li>
+        <li class="nav__log-in"><%= link_to 'Log In', new_user_session_path %></li>
+        <li class="nav__sign-up"><%= link_to 'Register', new_user_registration_path %></li>
+      </ul>
+    </nav>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
