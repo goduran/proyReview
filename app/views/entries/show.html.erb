@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entry.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @entry.description %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @entry.lat %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @entry.long %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @entry.photo %>
+</p>
+<p>
+  <strong>Reviews:</strong>
+  <%= @entry.reviews %>
+</p>
+<%= link_to 'Review', new_review_path(@entry) %> |
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>
