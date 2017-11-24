@@ -1,36 +1,57 @@
 <p id="notice"><%= notice %></p>
+    <h2>Location</h3>
+<section class="box">
+  <h1 class='page-title'>
+    <%= @entry.name %> <div class='score score--big'>
+      <%= @entry.reviews.average(:score) %></div>
+  </h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @entry.name %>
-</p>
+  <hr>
+  <p>
+    <%= @entry.description %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @entry.description %>
-</p>
+  <h3>Photo</h3>
+  <%= image_tag @entry.photo %>
 
-<p>
-  <strong>Lat:</strong>
-  <%= @entry.lat %>
-</p>
+  <% unless @entry.latitude.nil? %>
+      <h2>Location</h2>
+    <h3>
+      <strong>Latitude:</strong>
+      <%= @entry.latitude %>
+    </h3>
 
-<p>
-  <strong>Long:</strong>
-  <%= @entry.long %>
-</p>
+    <h3>
+      <strong>Longitude:</strong>
+      <%= @entry.longitude %>
+    </h3>
 
-<p>
-  <strong>Photo:</strong>
-  <%= @entry.photo %>
-</p>
-<p>
-  <strong>Reviews:</strong>
-  <% @entry.reviews.each do |entry| %>
-    <li>score: <%= entry.score %></li>
+    <h3>Address</h3>
+    <%= Geocoder.address([@entry.latitude,@entry.longitude]) %>
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@entry.latitude},#{@entry.longitude}&markers=#{@entry.latitude},#{@entry.longitude}&zoom=17&size=640x400&key=AIzaSyD4piB0aUPWUPPe4voL8X3V1zwBOkQcOfw", class:"img-fluid img-rounded", alt:"#{@entry.name} en el mapa" %>
   <% end %>
-</p>
+</section>
+<section class='box'>
+  <h2 class='section-title'>Reviews:</h2>
+  <hr>
+  <ul class='row'>
 
-<%= link_to 'Review', new_entry_review_path(@entry) %> |
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
+    <% @entry.reviews.each do |entry| %>
+      <li class='box box--narrow box--solid row__box'>
+        <div class='score'><%= entry.score %></div>
+        <%= image_tag entry.photo %>
+        <hr>
+        <p class='review-list__item__review-text'><%= entry.reviewtext %></p>
+      </li>
+    <% end %>
+  </ul>
+
+</section>
+<div class="box box--narrow">
+
+<%= link_to 'Review', new_entry_review_path(@entry) %>
+|
+<%= link_to 'Edit', edit_entry_path(@entry) %>
+|
 <%= link_to 'Back', entries_path %>
+</div>

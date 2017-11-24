@@ -6,18 +6,33 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <li class="nav__home"><%= link_to 'Home', entries_path %></li>
+    <nav class='box box--narrow navbar'>
+      <%= link_to entries_path, class:"nav__home__link" do%>
+        <div class="nav__home">
+          <i class='material-icons'>&#xE88A;</i>
+        </div>
+      <% end %>
+
+      <ul class='navbar__right'>
+        <% if user_signed_in? %>
+        <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+        <% else %>
         <li class="nav__log-in"><%= link_to 'Log In', new_user_session_path %></li>
-        <li class="nav__sign-up"><%= link_to 'Register', new_user_registration_path %></li>
+        <li class="nav__sign-up"><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <% end %>
       </ul>
     </nav>
     <p class="alert"><%= alert %></p>
 
+
+
     <%= yield %>
+
   </body>
 </html>

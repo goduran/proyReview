@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :score %>
-    <%= form.number_field :score, id: :review_score %>
+    <%= form.label 'Your Score (out of 5)'%>
+    <%= form.number_field :score, in: 1...6, id: :review_score %>
   </div>
 
   <div class="field">
-    <%= form.label :reviewtext %>
+    <%= form.label 'Review Text' %>
     <%= form.text_area :reviewtext, id: :review_reviewtext %>
   </div>
 
   <div class="field">
     <%= form.label :photo %>
-    <%= form.text_field :photo, id: :review_photo %>
+    <%= form.file_field :photo, id: :review_photo %>
   </div>
 
   <div class="actions">

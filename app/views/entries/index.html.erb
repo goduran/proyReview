@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
+<section class="box">
+<h2 class="section-title">Entries</h1>
 
-<h1>Entries</h1>
-
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Lat</th>
-      <th>Long</th>
       <th>Photo</th>
       <th colspan="3"></th>
     </tr>
@@ -17,10 +15,8 @@
   <tbody>
     <% @entries.each do |entry| %>
       <tr>
-        <td><%= entry.name %></td>
-        <td><%= entry.description %></td>
-        <td><%= entry.lat %></td>
-        <td><%= entry.long %></td>
+        <td class='table__entry-name'><%= link_to entry.name, entry %></td>
+        <td class="table__description"><%= entry.description %></td>
         <td><%= entry.photo %></td>
         <td><%= link_to 'Show', entry %></td>
         <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
@@ -28,8 +24,26 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
 
-<br>
+<% @entries.each do |entry| %>
+  <%= link_to entry, class:"box box--narrow box--solid entry" do %>
+      <img src="<%= entry.photo%>" alt="">
+      <h3><%= entry.name %></h3>
+      <hr>
+      <p><%= entry.description %></p>
+      <hr>
+  <%end%>
 
-<%= link_to 'New Entry', new_entry_path %>
+  <div class="entry-controls">
+  <%= link_to 'Edit', edit_entry_path(entry) %>
+  <%= link_to 'Delete', entry, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+
+<%end%>
+
+</section>
+<div class="box box--narrow">
+  <%= link_to 'New Entry', new_entry_path %>
+
+</div>
