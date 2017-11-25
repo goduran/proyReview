@@ -2,8 +2,7 @@ class Entry < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   has_many :reviews
 
-
-after_validation :reverse_geocode, unless: ->(obj) { obj.address.present? },
+after_validation :reverse_geocode,
 if: ->(obj){ obj.latitude.present? and obj.latitude_changed? and obj.longitude.present? and obj.longitude_changed? }
 reverse_geocoded_by :latitude, :longitude
 
